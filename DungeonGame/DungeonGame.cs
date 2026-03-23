@@ -47,29 +47,6 @@ namespace DungeonGame
                 stageManager.PrintCurrentMap();
 
                 Console.WriteLine("방향을 입력해주세요. (W:위, A:왼쪽, S:아래, D:오른쪽)");
-                //Console.WriteLine("방향을 입력해주세요. (L:왼쪽, R:오른쪽, U:위, D:아래)")
-
-                //string cmd = Console.ReadLine();
-                //switch(cmd)
-                //{
-                //    case "W":
-                //        player.MoveUp();
-                //        break;
-                //    case "A":
-                //        player.MoveLeft();
-                //        break;
-                //    case "S":
-                //        player.MoveDown();
-                //        break;
-                //    case "D":
-                //        player.MoveRight();
-                //        break;
-                //    default:
-                //        continue;
-                //}
-
-                //stageManager.UpdatePlayer(player);
-                //stageManager.UpdateMonsters();
             }
         }
 

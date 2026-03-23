@@ -15,6 +15,8 @@ namespace DungeonGame
         void MoveDown();
     }
 
+
+    // Actor 클래스
     public class Actor
     {
         protected (int row, int col) position;

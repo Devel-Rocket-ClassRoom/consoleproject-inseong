@@ -62,6 +62,24 @@ namespace DungeonGame
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
+
+                    //switch (key.Key)
+                    //{
+                    //    case ConsoleKey.UpArrow:
+                    //        player.MoveUp(stageManager);
+                    //        break;
+                    //    case ConsoleKey.DownArrow:
+                    //        player.MoveDown(stageManager);
+                    //        break;
+                    //    case ConsoleKey.LeftArrow:
+                    //        player.MoveLeft(stageManager);
+                    //        break;
+                    //    case ConsoleKey.RightArrow:
+                    //        player.MoveRight(stageManager);
+                    //        break;
+                    //    case ConsoleKey.Escape:
+                    //        return; // 게임 종료
+                    //}
                 }
             }
         }

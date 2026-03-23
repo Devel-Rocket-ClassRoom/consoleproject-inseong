@@ -29,6 +29,12 @@ namespace DungeonGame
             set { position.col = value; }
         }
 
+        public (int row, int col) Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
         protected int health;
         public int Health
         {
@@ -36,17 +42,5 @@ namespace DungeonGame
         }
 
         public char Mark { get; set; }
-
-        public void SetPosition(int r, int c)
-        {
-            position.row = r;
-            position.col = c;
-        }
-
-        public void SetPosition((int r, int c) pos)
-        {
-            position.row = pos.r;
-            position.col = pos.c;
-        }
     }
 }

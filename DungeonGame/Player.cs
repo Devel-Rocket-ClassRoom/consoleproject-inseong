@@ -51,7 +51,7 @@ namespace DungeonGame
                 else
                 {
                     state = PlayerState.Idle;
-                    SetPosition(nextR, nextC);
+                    Position = (nextR, nextC);
                 }
             }
         }

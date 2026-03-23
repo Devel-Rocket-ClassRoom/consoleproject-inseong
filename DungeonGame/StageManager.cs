@@ -10,6 +10,11 @@ namespace DungeonGame
     {
         private List<Stage> stageList;
         private Player player;
+        public Player Player
+        {
+            get { return player; }
+        }
+
         private Stage currentStage;
 
         int totalStageCount = 0;
@@ -40,7 +45,7 @@ namespace DungeonGame
 
             currentStageIndex = 0;
             currentStage = stageList[currentStageIndex];
-            currentStage.SetPlayer(player);
+            //currentStage.SetPlayer(player);
         }
 
         public void AddAndBuildStage()
@@ -53,6 +58,26 @@ namespace DungeonGame
             }
         }
 
+        Stage NextStage()
+        {
+            currentStageIndex++;
+            if (currentStageIndex < stageList.Count)
+            {
+                return stageList[currentStageIndex];
+            }
+
+            return null;
+        }
+
+        Stage GetStage(int index)
+        {
+            if(index < stageList.Count)
+            {
+                return stageList[index];
+            }
+            return null;
+        }
+
         public void PrintCurrentMap()
         {
             if(currentStage != null)
@@ -63,25 +88,9 @@ namespace DungeonGame
 
         public void Update()
         {
-            string cmd = Console.ReadLine();
-            switch (cmd)
-            {
-                case "W":
-                    player.MoveUp();
-                    break;
-                case "A":
-                    player.MoveLeft();
-                    break;
-                case "S":
-                    player.MoveDown();
-                    break;
-                case "D":
-                    player.MoveRight();
-                    break;
-            }
-
             if (currentStage != null)
             {
+                currentStage.UpdatePlayer();
                 currentStage.UpdateMonsters();
             }
         }

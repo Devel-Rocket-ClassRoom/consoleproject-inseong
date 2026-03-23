@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonGame
 {
+    // Actor 인터페이스
     public interface IActorMove
     {
         void MoveLeft();

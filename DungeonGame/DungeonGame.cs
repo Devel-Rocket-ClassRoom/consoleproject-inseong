@@ -24,48 +24,49 @@ namespace DungeonGame
             if (realtimeGame)
                 GameLoop = RealTimeGameLoop;
 
-            InitGame();
-            GameLoop();
-        }
-
-        public void InitGame()
-        {
-            if(stageManager == null)
+            if (stageManager == null)
             {
                 stageManager = new StageManager();
             }
 
-            stageManager.InitStages();
+            stageManager.Start();
         }
 
         void TurnBaseGameLoop()
         {
-            bool finishFlag = false;
-            while (!finishFlag)
+            stageManager.NextStage();
+
+            while (!stageManager.FinishFlag)
             {
                 Console.SetCursorPosition(0, 0);
                 stageManager.PrintCurrentMap();
 
                 Console.WriteLine("방향을 입력해주세요. (W:위, A:왼쪽, S:아래, D:오른쪽)");
-                //Console.WriteLine("방향을 입력해주세요. (L:왼쪽, R:오른쪽, U:위, D:아래)")
 
                 string cmd = Console.ReadLine();
-                switch (cmd)
+                if(string.IsNullOrEmpty(cmd))
                 {
-                    case "W":
-                        stageManager.Player.MoveUp();
-                        break;
-                    case "A":
-                        stageManager.Player.MoveLeft();
-                        break;
-                    case "S":
-                        stageManager.Player.MoveDown();
-                        break;
-                    case "D":
-                        stageManager.Player.MoveRight();
-                        break;
-                    default:
-                        continue;
+                    continue;
+                }
+                else
+                {
+                    switch (cmd.ToUpper()[0])
+                    {
+                        case Constants.Up:
+                            stageManager.Player.MoveUp();
+                            break;
+                        case Constants.Left:
+                            stageManager.Player.MoveLeft();
+                            break;
+                        case Constants.Down:
+                            stageManager.Player.MoveDown();
+                            break;
+                        case Constants.Right:
+                            stageManager.Player.MoveRight();
+                            break;
+                        default:
+                            continue;
+                    }
                 }
 
                 stageManager.Update();

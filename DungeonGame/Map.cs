@@ -12,8 +12,9 @@ namespace DungeonGame
         private MapTile[,] mapData;
         private Dictionary<(int, int), Monster> monsterList;
         //private Player currentPlayer;
-        private (int row, int col) startPosition;
-        private (int row, int col) lastPosition;
+        public (int row, int col) StartPosition { get; set; }
+        public (int row, int col) LastPosition { get; set; }
+        
         int rowLength;
         int colLength;
 
@@ -74,7 +75,7 @@ namespace DungeonGame
             ClearMap();
             BuildWalls();
 
-            startPosition = GetRandomStartPosition();
+            StartPosition = GetRandomStartPosition();
 
             CreateRandomMonsters();
         }
@@ -104,7 +105,7 @@ namespace DungeonGame
 
             for (int c = 1; c < colLength - 1; c++)
             {
-                mapData[0, c] = new MapTile();
+                mapData[0, c] = new WallTile();
                 mapData[rowLength - 1, c] = new WallTile();
             }
 
@@ -204,6 +205,15 @@ namespace DungeonGame
             if(count > floors.Count -1)
             {
                 count = floors.Count - 1;
+            }
+
+            if(monsterList == null)
+            {
+                monsterList = new Dictionary<(int, int), Monster>();
+            }
+            else
+            {
+                monsterList.Clear();
             }
 
             for (int i = 0; i < count; i++)

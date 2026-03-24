@@ -19,12 +19,15 @@ namespace DungeonGame
 
         int totalStageCount = 0;
         int currentStageIndex = -1;
+        public bool FinishFlag { get; set; } = false;
 
-        public StageManager(int stageCount = 0)
+        public void Start()
         {
-            InitStages(stageCount);
+            InitStages();
+            InitPlayer();
+            PlayNextStage();
         }
-        
+
         public void InitStages(int stageCount = 0)
         {
             if (stageCount <= 0)
@@ -41,11 +44,34 @@ namespace DungeonGame
                 AddAndBuildStage();
             }
 
-            player = new Player();
+            //currentStageIndex = 0;
+            //currentStage = stageList[currentStageIndex];
+        }
 
-            currentStageIndex = 0;
-            currentStage = stageList[currentStageIndex];
-            //currentStage.SetPlayer(player);
+        public void InitPlayer()
+        {
+            player = new Player();
+            currentStage.SetPlayer(player);
+        }
+
+        public void NextStage()
+        {
+            if(currentStage != null)
+            {
+                currentStage.RemovePlayer();
+            }
+
+            currentStageIndex++;
+            if(currentStageIndex < stageList.Count)
+            {
+                currentStage = stageList[currentStageIndex];
+                currentStage.InitStage(player);
+                currentStage.NextMap();
+            }
+            else
+            {
+                FinishFlag = true;
+            }
         }
 
         public void AddAndBuildStage()

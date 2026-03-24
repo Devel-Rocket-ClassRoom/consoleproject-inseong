@@ -47,6 +47,28 @@ namespace DungeonGame
                 stageManager.PrintCurrentMap();
 
                 Console.WriteLine("방향을 입력해주세요. (W:위, A:왼쪽, S:아래, D:오른쪽)");
+                //Console.WriteLine("방향을 입력해주세요. (L:왼쪽, R:오른쪽, U:위, D:아래)")
+
+                string cmd = Console.ReadLine();
+                switch (cmd)
+                {
+                    case "W":
+                        stageManager.Player.MoveUp();
+                        break;
+                    case "A":
+                        stageManager.Player.MoveLeft();
+                        break;
+                    case "S":
+                        stageManager.Player.MoveDown();
+                        break;
+                    case "D":
+                        stageManager.Player.MoveRight();
+                        break;
+                    default:
+                        continue;
+                }
+
+                stageManager.Update();
             }
         }
 
@@ -63,23 +85,23 @@ namespace DungeonGame
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
 
-                    //switch (key.Key)
-                    //{
-                    //    case ConsoleKey.UpArrow:
-                    //        player.MoveUp(stageManager);
-                    //        break;
-                    //    case ConsoleKey.DownArrow:
-                    //        player.MoveDown(stageManager);
-                    //        break;
-                    //    case ConsoleKey.LeftArrow:
-                    //        player.MoveLeft(stageManager);
-                    //        break;
-                    //    case ConsoleKey.RightArrow:
-                    //        player.MoveRight(stageManager);
-                    //        break;
-                    //    case ConsoleKey.Escape:
-                    //        return; // 게임 종료
-                    //}
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            stageManager.Player.MoveUp();
+                            break;
+                        case ConsoleKey.DownArrow:
+                            stageManager.Player.MoveDown();
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            stageManager.Player.MoveLeft();
+                            break;
+                        case ConsoleKey.RightArrow:
+                            stageManager.Player.MoveRight();
+                            break;
+                        case ConsoleKey.Escape:
+                            return; // 게임 종료
+                    }
                 }
             }
         }

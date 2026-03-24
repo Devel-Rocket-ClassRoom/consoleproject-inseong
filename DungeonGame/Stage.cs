@@ -9,13 +9,14 @@ namespace DungeonGame
     public class Stage
     {
         List<Map> mapList;
-        int currentMap;
+        int currentMapIndex;
+        //(int row, int col) lastPlayerPosition = (-1, -1);
         Player currentPlayer;
 
         public Stage()
         {
             mapList = new List<Map>();
-            currentMap = 0;
+            currentMapIndex = 0;
         }
 
         public void SetPlayer(Player p)
@@ -27,6 +28,19 @@ namespace DungeonGame
         {
             currentPlayer = null;
         }
+
+        //public void Start(Player player)
+        //{
+        //    currentPlayer = player;
+        //    if(lastPlayerPosition != (-1, -1))
+        //    {
+        //        lastPlayerPosition = player.Position;
+        //    }
+        //    else
+        //    {
+        //        player.Position = lastPlayerPosition;
+        //    }
+        //}
 
         public void BuildStage(int mapCount = 0)
         {
@@ -45,6 +59,11 @@ namespace DungeonGame
             }
         }
 
+        public void UpdatePlayer()
+        {
+            mapList[currentMapIndex].Update(currentPlayer);
+        }
+
         public void UpdateMonsters()
         {
             foreach(Map m in mapList)
@@ -55,10 +74,10 @@ namespace DungeonGame
 
         public void PrintCurrentMap()
         {
-            if(currentMap >= 0 && currentMap < mapList.Count)
+            if(currentMapIndex >= 0 && currentMapIndex < mapList.Count)
             {
-                StringBuilder stringBuffer = mapList[currentMap].PrintMap();
-
+                StringBuilder stringBuffer = mapList[currentMapIndex].PrintMap(currentPlayer);
+                Console.WriteLine(stringBuffer.ToString());
             }
         }
     }

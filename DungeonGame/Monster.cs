@@ -34,6 +34,14 @@ namespace DungeonGame
             Mark = Constants.MonsterMark;
             State = MonsterState.Idle;
         }
+        
+        public Monster(int r, int c)
+        {
+            Mark = Constants.MonsterMark;
+            State = MonsterState.Idle;
+            Row = r;
+            Col = c;
+        }
 
         public void MoveLeft()
         {

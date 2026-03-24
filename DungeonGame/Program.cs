@@ -11,7 +11,7 @@ namespace DungeonGame
         static void Main(string[] args)
         {
             DungeonGame game = new DungeonGame();
-            game.PlayGame();
+            game.StartGame();
         }
     }
 }

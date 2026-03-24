@@ -25,7 +25,7 @@ namespace DungeonGame
         {
             InitStages();
             InitPlayer();
-            PlayNextStage();
+            //PlayNextStage();
         }
 
         public void InitStages(int stageCount = 0)
@@ -84,16 +84,16 @@ namespace DungeonGame
             }
         }
 
-        Stage NextStage()
-        {
-            currentStageIndex++;
-            if (currentStageIndex < stageList.Count)
-            {
-                return stageList[currentStageIndex];
-            }
+        //Stage NextStage()
+        //{
+        //    currentStageIndex++;
+        //    if (currentStageIndex < stageList.Count)
+        //    {
+        //        return stageList[currentStageIndex];
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
         Stage GetStage(int index)
         {

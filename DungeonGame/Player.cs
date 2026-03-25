@@ -22,11 +22,6 @@ namespace DungeonGame
         int nextC;
 
         public Map CurrentMap { private get; set; }
-        //Map currentMap;
-        //public Map CurrentMap
-        //{
-        //    set { currentMap = value; }
-        //}
 
         public Player()
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static DungeonGame.Player;
@@ -21,6 +23,8 @@ namespace DungeonGame
         }
 
         public MonsterState State { private get; set; }
+        int moveTurnCount;
+        int battleTurnCount;
         int nextR;
         int nextC;
 
@@ -102,9 +106,30 @@ namespace DungeonGame
 
         public void Update()
         {
-            // Idle 상태 또는 Patrol 상태일지 결정
-            // Patrol 일 경우 
-            // Idle 상태일 때 움직일지 결정
+            
+            switch (State)
+            {
+                case MonsterState.Idle:
+                    break;
+
+                // Encounter 상태일 경우 Battle 상태 돌입, Turn 수 체크
+                case MonsterState.Encounter:
+                    break;
+
+                case MonsterState.Patrol:
+                    break;
+
+                case MonsterState.Battle:
+                    break;
+
+                default:
+                    break;
+            }
+            // Turn 종료일 경우, Range 안에 Player가 있을 경우 Battle 유지, 없을 경우 idle 또는 Patrol 상태일지 체크
+            // Turn 수 만큼 대기
+
+            // Patrol 일 경우 이동
+            // Idle 상태일 때는 턴 수만 증가
         }
     }
 }

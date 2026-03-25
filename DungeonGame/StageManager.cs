@@ -9,11 +9,8 @@ namespace DungeonGame
     public class StageManager
     {
         private List<Stage> stageList;
-        private Player player;
-        public Player Player
-        {
-            get { return player; }
-        }
+
+        public Player Player { get; private set; }
 
         private Stage currentStage;
 
@@ -21,12 +18,12 @@ namespace DungeonGame
         int currentStageIndex = -1;
         public bool FinishFlag { get; set; } = false;
 
-        public void Start()
-        {
-            InitStages();
-            InitPlayer();
-            //PlayNextStage();
-        }
+        //public void Start()
+        //{
+        //    InitStages();
+        //    InitPlayer();
+        //    //PlayNextStage();
+        //}
 
         public void InitStages(int stageCount = 0)
         {
@@ -37,7 +34,14 @@ namespace DungeonGame
 
             totalStageCount = stageCount;
 
-            stageList = new List<Stage>();
+            if(stageList != null)
+            {
+                stageList.Clear();
+            }
+            else
+            {
+                stageList = new List<Stage>();
+            }
 
             for (int i = 0; i < totalStageCount; i++)
             {
@@ -50,8 +54,7 @@ namespace DungeonGame
 
         public void InitPlayer()
         {
-            player = new Player();
-            currentStage.SetPlayer(player);
+            Player = new Player();
         }
 
         public void NextStage()
@@ -65,7 +68,7 @@ namespace DungeonGame
             if(currentStageIndex < stageList.Count)
             {
                 currentStage = stageList[currentStageIndex];
-                currentStage.InitStage(player);
+                currentStage.Init(Player);
                 currentStage.NextMap();
             }
             else

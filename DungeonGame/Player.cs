@@ -21,11 +21,12 @@ namespace DungeonGame
         int nextR;
         int nextC;
 
-        Map currentMap;
-        public Map CurrentMap
-        {
-            set { currentMap = value; }
-        }
+        public Map CurrentMap { private get; set; }
+        //Map currentMap;
+        //public Map CurrentMap
+        //{
+        //    set { currentMap = value; }
+        //}
 
         public Player()
         {
@@ -35,15 +36,17 @@ namespace DungeonGame
 
         void UpdateMove(int nextR, int nextC)
         {
-            if (currentMap != null)
+            if (CurrentMap != null)
             {
-                encounteredMonster = currentMap.TryGetMonster(nextR, nextC);
+                encounteredMonster = CurrentMap.TryGetMonster(nextR, nextC);
                 if (encounteredMonster != null)
                 {
                     state = PlayerState.Encounter;
-                    Console.WriteLine("몬스터와 만났습니다..");
+                    encounteredMonster.State = Monster.MonsterState.Encounter;
+
+                    Console.WriteLine("몬스터와 만났습니다. 전투 돌입!");
                 }
-                else if (currentMap.IsWall(nextR, nextC))
+                else if (CurrentMap.IsWall(nextR, nextC))
                 {
                     state = PlayerState.Idle;
                     Console.WriteLine("이동할 수 없습니다.");

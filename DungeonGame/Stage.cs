@@ -32,7 +32,7 @@ namespace DungeonGame
             currentPlayer = null;
         }
 
-        public void InitStage(Player p)
+        public void Init(Player p)
         {
             currentPlayer = p;
             currentMap = null;
@@ -46,6 +46,7 @@ namespace DungeonGame
             {
                 currentMap = mapList[currentMapIndex];
                 currentPlayer.Position = currentMap.StartPosition;
+                currentPlayer.CurrentMap = currentMap;
             }
             else
             {

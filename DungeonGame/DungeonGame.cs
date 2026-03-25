@@ -29,7 +29,10 @@ namespace DungeonGame
                 stageManager = new StageManager();
             }
 
-            stageManager.Start();
+            stageManager.InitStages();
+            stageManager.InitPlayer();
+
+            GameLoop();
         }
 
         void TurnBaseGameLoop()
@@ -104,6 +107,8 @@ namespace DungeonGame
                             return; // 게임 종료
                     }
                 }
+
+                stageManager.Update();
             }
         }
     }

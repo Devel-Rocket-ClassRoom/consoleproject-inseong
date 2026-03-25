@@ -224,6 +224,8 @@ namespace DungeonGame
                 int c = floors[p].c;
 
                 Monster monster = new Monster(r, c);
+                monster.CurrentMap = this;
+
                 monsterList.Add((r,c), monster);
 
                 // 사용한 값은 삭제

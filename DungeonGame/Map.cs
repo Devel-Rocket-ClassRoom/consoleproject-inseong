@@ -12,8 +12,9 @@ namespace DungeonGame
         private MapTile[,] mapData;
         private Dictionary<(int, int), Monster> monsterList;
         //private Player currentPlayer;
-        private (int row, int col) startPosition;
-        private (int row, int col) lastPosition;
+        public (int row, int col) StartPosition { get; set; }
+        public (int row, int col) LastPosition { get; set; }
+        
         int rowLength;
         int colLength;
 
@@ -74,7 +75,7 @@ namespace DungeonGame
             ClearMap();
             BuildWalls();
 
-            startPosition = GetRandomStartPosition();
+            StartPosition = GetRandomStartPosition();
 
             CreateRandomMonsters();
         }
@@ -104,7 +105,7 @@ namespace DungeonGame
 
             for (int c = 1; c < colLength - 1; c++)
             {
-                mapData[0, c] = new MapTile();
+                mapData[0, c] = new WallTile();
                 mapData[rowLength - 1, c] = new WallTile();
             }
 
@@ -206,6 +207,15 @@ namespace DungeonGame
                 count = floors.Count - 1;
             }
 
+            if(monsterList == null)
+            {
+                monsterList = new Dictionary<(int, int), Monster>();
+            }
+            else
+            {
+                monsterList.Clear();
+            }
+
             for (int i = 0; i < count; i++)
             {
                 int p = rand.Next(0, floors.Count - 1);
@@ -214,6 +224,8 @@ namespace DungeonGame
                 int c = floors[p].c;
 
                 Monster monster = new Monster(r, c);
+                monster.CurrentMap = this;
+
                 monsterList.Add((r,c), monster);
 
                 // 사용한 값은 삭제
